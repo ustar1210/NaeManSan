@@ -179,8 +179,8 @@ LEVEL 4. SETTINGS
 */
 
 .field{
-  --fieldBorderColor: #5c76c0;
-  --fieldBorderColorActive: #5673c2;
+  --fieldBorderColor: #94B49F;
+  --fieldBorderColorActive: #94B49F;
 }
 
 /*
@@ -210,7 +210,7 @@ DEMO
 }   
 /* 버튼CSS */
 button{
-  background:#435ac0;
+  background:#94B49F;
   color:#fff;
   border:none;
   position:relative;
@@ -223,7 +223,7 @@ button{
 }
 button:hover{
   background:#fff;
-  color:#435ac0;
+  color:#94B49F;
 }
 button:before,button:after{
   content:'';
@@ -232,7 +232,7 @@ button:before,button:after{
   right:0;
   height:2px;
   width:0;
-  background: #435ac0;
+  background: #94B49F;
   transition:400ms ease all;
 }
 button:after{
@@ -258,7 +258,7 @@ textarea {
 
 
 .box select {
-  background-color: #435ac0;
+  background-color: #94B49F;
   color: white;
   padding: 3px;
   width: 120px;
@@ -294,8 +294,6 @@ textarea {
 <section style="margin: 20px; margin-left: 35px;" >
     <form action="{%url 'study:create'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <!-- <p>스터디명 : <input type="text" name="name" required></p> -->
-
         <label class="field field_v1" style="margin: 10px;">
           <input class="field__input" placeholder="Study Name" type="text" name="name" required>
           <span class="field__label-wrap">
