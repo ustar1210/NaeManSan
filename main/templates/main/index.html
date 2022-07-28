@@ -106,7 +106,7 @@
             {%for study in posts|slice:":3"%}
             <div class="col-xl-4 col-md-4 col-sm-6 project ui graphic">
                 <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                  <img class="card-img" src="{{study.image.url}}" alt="Card image">
+                    <img class="card-img" src="{{study.image.url}}" alt="Card image">
                     <div class="service-work-vertical pics card-img-overlay d-flex align-items-end">
                         <div class="service-work-content text-left text-light">
                             <p class="card-text" style="margin: 6px;">{{study.name}}</p>
