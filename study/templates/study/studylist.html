@@ -31,33 +31,23 @@
     <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 pb-3 projects">
 
             {%for post in posts%}
+    
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui branding {{post.section}}">
                     <a href="{%url 'study:detail' post.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                        <div style="padding: 80px; background-color: rgb(214, 239, 214);" >
+                            
                         <!-- 배경이미지 -->
                         <!-- if문써서 카테고리별 배경이미지 변경가능하게 수정해야함. -->
-                        {%if post.section == '어학'%}
-                            <img class="service card-img" src="{% static 'img/services-07.jpg' %}" alt="Card image">
-                        {%elif post.section == '전공'%}
-                            <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
-                        {%elif post.section == '자격증'%}
-                            <img class="service card-img" src="{% static 'img/services-05.jpg' %}" alt="Card image">
-                        {%elif post.section == '취업'%}
-                            <img class="service card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
-                        {%endif%}
                         <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-
                             <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{post.section}}</span>
-                                <p class="card-text">{{post.intro}}</p>
+                                <p class="card-text">{{post.name}}</p>
                             </div>
                         </div>
+                    </div>
                     </a>
                 </div>
             {%endfor%}
 
-        <!-- <img class="card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
-        <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
-        <img class="card-img" src="{% static 'img/services-04.jpg' %}" alt="Card image"> -->
     </div>
 </section>
 {% endblock %}
