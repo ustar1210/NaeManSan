@@ -17,7 +17,22 @@ class study(models.Model):
     image = models.FileField(
         upload_to="image/", null=True
     )  # 스터디 관련 이미지(있으면 글 썸네일, 없으면 메인 로고가 글 썸네일)
+#-----------------좋아요------------------#
+    like_user_set = models.ManyToManyField(User, blank=True, related_name='likes_user_set',through='Like')
 
+    @property
+    def like_count(self):
+        return self.like_user_set.count()
+
+
+class Like(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    study = models.ForeignKey(study, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together =(('user', 'study'))
+#-----------------좋아요------------------#
 
 # 스터디 일정
 class todo(models.Model):

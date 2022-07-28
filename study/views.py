@@ -9,6 +9,31 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
+#-----------------좋아요------------------#
+from django.views.decorators.http import require_POST
+from django.http import HttpResponse
+from .models import Like
+from django.contrib.auth.decorators import login_required
+import json
+
+@require_POST
+@login_required
+def like_toggle(request, study_id):
+    Study = get_object_or_404(study, pk = study_id)
+    study_like, study_like_created = Like.objects.get_or_create(user=request.user, study=Study)
+
+    if not study_like_created:
+        study_like.delete()
+        result = "like_cancel"
+    else:
+        result = "like"
+    context = {
+        "like_count" : Study.like_count,
+        "result" : result
+    }
+    return HttpResponse(json.dumps(context), content_type = "application/json")
+#-----------------좋아요------------------#
+
 
 def studylist(request):
     posts = study.objects.all()
