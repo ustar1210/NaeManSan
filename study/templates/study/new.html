@@ -179,8 +179,8 @@ LEVEL 4. SETTINGS
 */
 
 .field{
-  --fieldBorderColor: #5c76c0;
-  --fieldBorderColorActive: #5673c2;
+  --fieldBorderColor: #94B49F;
+  --fieldBorderColorActive: #94B49F;
 }
 
 /*
@@ -210,7 +210,7 @@ DEMO
 }   
 /* 버튼CSS */
 button{
-  background:#435ac0;
+  background:#94B49F;
   color:#fff;
   border:none;
   position:relative;
@@ -223,7 +223,7 @@ button{
 }
 button:hover{
   background:#fff;
-  color:#435ac0;
+  color:#94B49F;
 }
 button:before,button:after{
   content:'';
@@ -232,7 +232,7 @@ button:before,button:after{
   right:0;
   height:2px;
   width:0;
-  background: #435ac0;
+  background: #94B49F;
   transition:400ms ease all;
 }
 button:after{
@@ -258,7 +258,7 @@ textarea {
 
 
 .box select {
-  background-color: #435ac0;
+  background-color: #94B49F;
   color: white;
   padding: 3px;
   width: 120px;
@@ -294,10 +294,8 @@ textarea {
 <section style="margin: 20px; margin-left: 35px;" >
     <form action="{%url 'study:create'%}" method="post" enctype="multipart/form-data">
         {%csrf_token%}
-        <!-- <p>스터디명 : <input type="text" name="name" required></p> -->
-
         <label class="field field_v1" style="margin: 10px;">
-          <input class="field__input" placeholder="Study Name" type="text" name="name" required>
+          <input class="field__input" placeholder="name" type="text" name="name" required>
           <span class="field__label-wrap">
             <span class="field__label">산책로 이름</span>
           </span>
@@ -350,11 +348,13 @@ textarea {
         <!-- <p>모집 인원: <input type="number" name="member_start" min="1" required> ~ <input type="number" name="member_end" min="1" required></p> -->
 
         <!-- <p>활동 기간: <input type="date" name="start_date" required> ~ <input type="date" name="due_date" required></p> -->
-        <p>산책로 정보: <textarea style="width: 100%;" type="text" name="body" cols="20" rows="20"></textarea></p>
+        <p>산책로 정보: <textarea style="width: 100%;" type="text" name="body" cols="20" rows="20">
+(산책로 상세루트와 주변 맛집등을 알려주세요!)
+</textarea></p>
 
 
         <label class="field field_v1" style="margin: 10px;">
-          <input class="field__input" placeholder="" type="number" name="difficulty" min="1" max = "10" required >
+          <input class="field__input" placeholder="" type="number" name="difficulty" min="1" max = "60" required >
           <span class="field__label-wrap">
             <span class="field__label">예상시간</span>
           </span>
@@ -362,15 +362,6 @@ textarea {
         <div>
 
         </div>
-        <!-- <p>스터디 난이도: <input type="number" name="difficulty" min="1" max = "10" required></p> -->
-
-        <!-- <label class="field field_v1" style="margin: 10px;">
-          <input class="field__input" placeholder="Phone Number" type="text" name="phnum" required>
-          <span class="field__label-wrap">
-            <span class="field__label">스터디장 번호</span>
-          </span>
-        </label> -->
-
         <div>
 
         </div>
@@ -381,8 +372,6 @@ textarea {
           </span>
         </label>
 
-        <!-- <p>스터디장 번호: <input type="text" name="phnum" required></p> -->
-		<!-- <p>사진: <input type="file" name="image"></p> -->
         <hr/>
 
 
