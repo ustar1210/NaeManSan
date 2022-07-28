@@ -273,26 +273,9 @@ a:hover{
                 {%for study in my_study%}
                 <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
                     <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
-                      <!-- {% if study.section == 취업 %}
-                      <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
-                      {% else %}
-                      
-                      {% endif %} -->
-                      {%if study.section == '어학'%}
-                      <img class="service` card-img" src="{% static 'img/services-07.jpg' %}" alt="Card image">
-                      {%elif study.section == '전공'%}
-                      <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
-                      {%elif study.section == '자격증'%}
-                      <img class="service card-img" src="{% static 'img/services-05.jpg' %}" alt="Card image">
-                      {%elif study.section == '취업'%}
-                      <img class="service card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
-                      {%endif%}
-                      <!-- <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image"> -->
-                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
+                      <img src="{{study.image}}" style="padding: 100px;"">
                         <div class="service-work-vertical card-img-overlay d-flex align-items-end">
                             <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
                                 <p class="card-text" style="margin: 6px;">{{study.name}}</p>
                             </div>
                         </div>
