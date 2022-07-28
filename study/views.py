@@ -8,8 +8,10 @@ from django.views.generic import ListView
 from django.core.paginator import Paginator
 
 # Create your views here.
+
+
 def studylist(request):
-    posts = study.objects.filter(is_over=False)  # 마감 전 애들만 불러오기
+    posts = study.objects.all()
     return render(request, "study/studylist.html", {"posts": posts})
 
 
@@ -21,21 +23,15 @@ def create(request):
     new_study = study()
     new_study.writer = request.user
     new_study.name = request.POST["name"]
-    new_study.section = request.POST["section"]
+
     new_study.intro = request.POST["intro"]
-    new_study.qualification = request.POST["qualification"]
-    new_study.member_start = request.POST["member_start"]
-    new_study.member_end = request.POST["member_end"]
-    new_study.start_date = request.POST["start_date"]
-    new_study.due_date = request.POST["due_date"]
+
     new_study.body = request.POST["body"]
     new_study.difficulty = request.POST["difficulty"]
-    new_study.phnum = request.POST["phnum"]
+
     new_study.image = request.FILES.get("image")
-    new_study.is_over = False  # 기본 상태 False
 
     new_study.save()
-    new_study.study_member.add(request.user)  # study가 만들어진 다음에 멤버에 추가해야함
 
     return redirect("study:detail", new_study.id)
 
@@ -81,7 +77,7 @@ def detail(request, id):
     post = get_object_or_404(study, pk=id)
     todos = post.todos.all()
     checks = post.checks.all()
-    dailys=post.dailys.all()
+    dailys = post.dailys.all()
     notions_all = notion.objects.all().order_by("-id")
     page = int(request.GET.get("p", 1))  # 없으면 1로 지정
     paginator = Paginator(notions_all, 5)
@@ -115,7 +111,8 @@ def edit(request, id):
         is_author = False
 
     return render(
-        request, "study/edit.html", {"post": edit_study, "is_author": is_author}
+        request, "study/edit.html", {"post": edit_study,
+                                     "is_author": is_author}
     )
 
 
@@ -123,19 +120,12 @@ def update(request, id):
     update_study = study.objects.get(id=id)
     update_study.writer = request.user
     update_study.name = request.POST["name"]
-    update_study.section = request.POST["section"]
+    # update_study.section = request.POST["section"]
     update_study.intro = request.POST["intro"]
-    update_study.qualification = request.POST["qualification"]
-    update_study.member_start = request.POST["member_start"]
-    update_study.member_end = request.POST["member_end"]
-    update_study.start_date = request.POST["start_date"]
-    update_study.due_date = request.POST["due_date"]
     update_study.body = request.POST["body"]
     update_study.difficulty = request.POST["difficulty"]
-    update_study.phnum = request.POST["phnum"]
     if request.FILES.get("image"):  # 이미지가 새로 들어오지 않으면 건드리지 않음
         update_study.image = request.FILES.get("image")
-
     update_study.save()
 
     return redirect("study:detail", update_study.id)
@@ -173,18 +163,21 @@ def create_notion(request, study_id):
     new_notion.save()
     return redirect("study:detail", study_id)
 
-def daily_detail(request,study_id,daily_id):
+
+def daily_detail(request, study_id, daily_id):
     post = get_object_or_404(study, pk=study_id)
-    daily = Daily.objects.get(id = daily_id)
-    return render(request, 'study/daily_detail.html',{'post':post, 'daily':daily})
+    daily = Daily.objects.get(id=daily_id)
+    return render(request, 'study/daily_detail.html', {'post': post, 'daily': daily})
 
-def daily_new(request,study_id):
-    post = get_object_or_404(study, pk = study_id)
-    return render(request, 'study/daily_new.html',{'post':post})
 
-def daily_create(request,study_id):
+def daily_new(request, study_id):
+    post = get_object_or_404(study, pk=study_id)
+    return render(request, 'study/daily_new.html', {'post': post})
+
+
+def daily_create(request, study_id):
     new_daily = Daily()
-    new_daily.post = get_object_or_404(study,pk=study_id)
+    new_daily.post = get_object_or_404(study, pk=study_id)
     new_daily.title = request.POST['title']
     new_daily.writer = request.POST['writer']
     new_daily.date = request.POST['date']
@@ -192,4 +185,4 @@ def daily_create(request,study_id):
     new_daily.body = request.POST['body']
     new_daily.image = request.FILES.get('image')
     new_daily.save()
-    return redirect('study:detail',study_id)
+    return redirect('study:detail', study_id)
