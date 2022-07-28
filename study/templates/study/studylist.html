@@ -68,23 +68,18 @@ background-color: #94B49F;
 <section class="container overflow-hidden py-5" style="margin-right: 10px;">
     <div class="row gx-5 gx-sm-3 gx-lg-5 gy-lg-5 gy-3 pb-3 projects">
 
-            {%for post in posts%}
+            {%for study in posts%}
     
-                <div class="col-xl-3 col-md-4 col-sm-6 project ui branding {{post.section}}">
-                    <a href="{%url 'study:detail' post.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                        <div style="padding: 80px; background-color: rgb(177, 199, 177);" >
-                            
-                        <!-- 배경이미지 -->
-                        
-                        <!-- if문써서 카테고리별 배경이미지 변경가능하게 수정해야함. -->
-                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                            <div class="service-work-content text-left text-light">
-                                <p class="card-text">{{post.name}}</p>
-                            </div>
+            <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+                <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                  <img class="card-img" src="{{study.image.url}}" alt="Card image">
+                    <div class="service-work-vertical pics card-img-overlay d-flex align-items-end">
+                        <div class="service-work-content text-left text-light">
+                            <p class="card-text" style="margin: 6px;">{{study.name}}</p>
                         </div>
                     </div>
-                    </a>
-                </div>
+                </a>
+            </div>
             {%endfor%}
 
     </div>

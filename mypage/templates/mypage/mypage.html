@@ -166,6 +166,10 @@ main {
   margin-bottom: 30px;
 }
 
+.pics {
+  margin-bottom: 0 !important;
+}
+
 .gallery img {
   box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
   width: auto; 
@@ -271,10 +275,10 @@ a:hover{
                 <h1>{% if request.user == user %}내가 {% endif %}만든 산책로<i class="fas fa-bell"></i></h1>
                 <hr>
                 {%for study in my_study%}
-                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+                <div class="col-xl-5 col-md-4 col-sm-6 project ui graphic">
                     <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                      <img src="{{study.image}}" style="padding: 100px;"">
-                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                      <img class="card-img" src="{{study.image.url}}" alt="Card image">
+                        <div class="service-work-vertical pics card-img-overlay d-flex align-items-end">
                             <div class="service-work-content text-left text-light">
                                 <p class="card-text" style="margin: 6px;">{{study.name}}</p>
                             </div>
@@ -287,19 +291,16 @@ a:hover{
                 <h1>{% if request.user == user %}내가 {% endif %}좋아요 한 산책로 <i class="far fa-bell"></i></h1>
                 <hr>
                 {%for study in like_list%}
-                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
-                    <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
-                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
-                        <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
-                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
-                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
-                            <div class="service-work-content text-left text-light">
-                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
-                                <p class="card-text" style="margin: 6px;">{{study.name}}</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
+                <div class="col-xl-5 col-md-4 col-sm-6 project ui graphic">
+                  <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                    <img class="card-img" src="{{study.image.url}}" alt="Card image">
+                      <div class="service-work-vertical pics card-img-overlay d-flex align-items-end">
+                          <div class="service-work-content text-left text-light">
+                              <p class="card-text" style="margin: 6px;">{{study.name}}</p>
+                          </div>
+                      </div>
+                  </a>
+              </div>
                 {%endfor%}
                 <hr/>
               </div>
