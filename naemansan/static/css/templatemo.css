@@ -51,7 +51,7 @@ p, a {font-weight: 400;}
 #main_nav .nav-item .nav-link:hover {color: #fff;}
 /* Home */
 #index_banner {
-  background-image: url('./../img/banner-bg-01.jpg');
+  background-image: url('./../img/stroll2.png');
   background-position: center center; background-size: cover;
   height: 100%;
   min-height: 60vh;
@@ -189,4 +189,16 @@ p, a {font-weight: 400;}
 footer a.text-light:hover {
   color: #bfbfbf !important;
   transition-duration: 0.15s;
+}
+
+.main-typo1 {
+  color: rgb(22, 22, 84);
+}
+
+.main-typo2 {
+  color: rgb(19, 19, 44);
+}
+
+.main-typo3 {
+  color: #577160;
 }
