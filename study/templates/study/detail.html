@@ -1,0 +1,388 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+
+    /* h1 {
+  padding: 0.7rem;
+  border-left: 5px solid rgb(113, 127, 247);
+  background: #dee3ff;
+} */
+    .first_a{
+        border: 2px solid none;
+        background-color: rgb(113, 127, 247);
+        padding: 4px 7px;        
+        border-radius: 10px;
+        text-decoration: none;
+        color: whitesmoke;
+
+    }
+    a:hover{
+        color: black;
+    }
+    .postImage{
+        width: 300px;
+        border-radius: 20px;
+    }
+
+    .end_a
+    {
+        text-decoration: none;
+        color: whitesmoke;
+    }
+    button{
+      background:#435ac0;
+      color:#fff;
+      border:none;
+      position:relative;
+      height:40px;
+      font-size:1em;
+      padding:0 20px;
+      cursor:pointer;
+      transition:800ms ease all;
+      outline:none;
+    }
+    button:hover{
+      background:rgb(160, 174, 255);
+      color:#435ac0;
+    }
+    button:before,button:after{
+      content:'';
+      position:absolute;
+      top:0;
+      right:0;
+      height:2px;
+      width:0;
+      background: #435ac0;
+      transition:400ms ease all;
+    }
+    button:after{
+      right:inherit;
+      top:inherit;
+      left:0;
+      bottom:0;
+    }
+    button:hover:before,button:hover:after{
+      width:100%;
+      transition:800ms ease all;
+    }
+    .titleBox{
+        border-radius: 1em; 
+        padding: 0.6em 1em; 
+        background: #ffffff; 
+        box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  
+        margin-left: 5px;
+    }
+    .bodyBox{
+        border-radius: 1em; 
+        padding: 0.8em 1em; 
+        background: #ffffff; 
+        box-shadow: 1px 2px 10px rgba(0,0,0,0.2);  
+        margin-left: 5px;
+    }
+</style>
+{% if user.is_authenticated %}
+<section style="margin: 20px; margin-left: 35px; margin-top: 30px;">
+    <h1 class="titleBox">스터디명 : {{post.name}}</h1>
+    <br>
+    <div class="bodyBox">
+    <h5 style="display: inline;">작성자 :</h5> <a class="first_a" href="{% url 'mypage:mypage' post.writer.id %}" >{{post.writer}}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <!-- <p style="display: inline; float: right;">스터디장 연락처: {{post.phnum}}<br></p> -->
+    <!-- 개인정보,,, -->
+    <hr>
+    <h5 style="display: inline;">스터디 분야 :</h5> {{post.section}}<br>
+    <h5 style="display: inline;">모집 대상:</h5> {{post.qualification}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <h5 style="display: inline;">스터디 모집 인원 : </h5>{{post.member_start}} ~ {{post.member_end}}<br>
+    <hr>
+    <h5 style="display: inline;">한줄 소개 :</h5> {{post.intro}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <h5 style="display: inline;"> 스터디 난이도 : </h5>{{post.difficulty}}<br>
+    <hr>
+
+    <div class="bodyBox">
+        <h3>스터디 정보</h3> {{post.body}}
+        <br><br>
+        {%if post.image%}
+        <h3>관련 이미지</h3> 
+        <img class="postImage" src="{{ post.image.url }}"  alt="사진 나올 곳"><br>
+    {%endif%}
+    </div>
+    
+    {%if not post.is_over%}
+    <!-- 글 작성자가 마감하기 전이라면 -->
+        {%if is_author%}
+        <!-- 접속자가 글 작성자라면 -->
+            {%if post.study_member_request%}
+            <br>
+            <!-- 그리고 혹시 지금 스터디 지원한 사람이 있다면 -->
+            <h3>&nbsp;&nbsp;지원자</h3>
+                {%for member in post.study_member_request.all%}
+                <!-- 지원한 사람 for문으로 꺼내고 수락 / 거절 -->
+                
+                &nbsp;&nbsp;&nbsp;{{member}}
+                    <a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:accept_request' post.id member.id %}">수락</a>
+                    <a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:refuse_request' post.id member.id %}">거절</a>
+                    <br><br>
+                
+                {%endfor%}
+            {%else%}
+            <!-- 지원한 사람이 없다면 -->
+            <br>
+            &nbsp;&nbsp;&nbsp;<strong>지원자 아직 없음!</strong><br>
+            {%endif%}
+        {%else%}
+        <!-- 접속자가 글 작성자가 아니라면 -->
+            {%if request.user in post.study_member.all%}
+            <!-- 접속자가 스터디에 가입돼 있으면 -->
+            <br>
+            &nbsp;&nbsp;&nbsp;<strong>해당 스터디에 가입돼 있습니다!</strong>
+            {%elif request.user in post.study_member_request.all%}
+            <!-- 접속자가 스터디에 가입 신청을 넣은 상태라면 -->
+            <br>
+            &nbsp;&nbsp;&nbsp; <strong>승인 대기 중입니다.</strong>
+                <a class="first_a" href="{% url 'study:apply_study' post.id %}" style="background-color: rgb(182, 182, 182);">지원취소</a><br>
+            {%elif request.user.is_authenticated %}
+            <!-- 어느 케이스에도 해당 안되고 로그인이 돼 있다면 -->
+            <br>
+                &nbsp;&nbsp;&nbsp;<a class="first_a" style="background-color: rgb(182, 182, 182);"href="{% url 'study:apply_study' post.id %}">지원하기</a><br>
+            {%endif%}
+        {%endif%}
+    {%else%}<hr>
+    <div style="text-align: center;">
+        <h1>- 마감 -</h1>
+    </div>
+    {%endif%}
+    {%if request.user in post.study_member.all%}
+    <!-- 접속자가 스터디에 가입 완료돼있으면 -->
+    <hr>
+    <!-- <h5 style="display: inline;"></h5> -->
+        현재 가입 멤버들:
+        {%for member in post.study_member.all%}
+
+        <a class ="first_a" href="{% url 'mypage:mypage' member.id %}">{{member}}</a>
+        {%endfor%}<br>
+        활동 기간: {{post.start_date}} ~ {{post.due_date}}<br>
+        스터디장 연락처 : {{post.phnum}}
+    {%endif%}
+    {%if is_author%}
+    <!-- 접속자가 글 작성자라면 -->
+        {%if not post.is_over%}
+        <!-- 마감하기 전 글이라면 -->
+    </div>
+    <br>
+            <button><a class="end_a" href="{% url 'study:edit' post.id %}">수정하기</a></button>
+            <button><a class="end_a" href="{% url 'study:delete' post.id %}">삭제하기</a></button>
+            <button><a class="end_a" href="{% url 'study:recruit_over' post.id%}">마감하기</a></button>
+        {%endif%}
+    {%endif%}
+    {%if user.is_superuser%}
+    <button style="margin-top: 10px;"><a class="end_a" href="{% url 'study:delete' post.id %}">삭제하기</a></button>
+    {%endif%}
+</section>
+{%if request.user in post.study_member.all%}
+<!-- 공지사항 시작 -->
+<section class="bg-light pt-sm-0 py-5">
+    <div class="container py-5">
+
+        <h1 class="h2 semi-bold-600 text-center mt-2">오늘의 공지사항</h1>
+        <p class="text-center pb-5 light-300">공지사항을 확인해 주세요!!</p>
+
+        <!-- Start Pricing Horizontal -->
+        <div class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden bg-white">
+            <div class="pricing-horizontal-icon col-md-3 text-center bg-secondary text-light py-4">
+                <i class="display-1 far fa-clipboard pt-4"></i>
+                <br><br>
+                <h5 class="h5 semi-bold-600 pb-4 light-300">공지사항</h5>
+            </div>
+            <div class="pricing-horizontal-body offset-lg-1 col-md-7 col-lg-7 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                {% for notion in notions %}
+                    -&nbsp{{notion.content}}<br>
+                {% endfor %}
+            </div>
+            <br>
+            <div class="row pb-4">
+                <div class="worksingle-comment-footer col-lg-8 m-auto">
+                    <br>
+                    <form class="col-md-12 m-auto" method="POST" action="{%url 'study:create_notion' post.id%}" role="form">
+                        {%csrf_token%}
+                        <div class="form-group">
+                            <textarea class="form-control form-control-lg light-300" id="inputmessage" name="notion_content" placeholder="공지사항 등록" rows="3"></textarea>
+                        </div>
+
+                        <div class="form-row pt-2">
+                            <div class="col-md-12 col-10 text-end">
+                                <button type="submit" class="end_a">작성완료</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- End Comment Form -->
+        </div>
+    </div>
+</section>
+<section class="container py-5">
+    <div class="row pt-5">
+        <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
+            <h2 class="worksingle-heading h3 pb-3 light-300 typo-space-line">출석 현황</h2>
+            <p class="worksingle-footer py-3 text-muted light-300">
+                
+            </p>
+        </div>
+    </div><!-- End Blog Cover -->
+
+    <div class="row justify-content-center pb-4">
+        <div class="col-lg-8">
+            <div class="worksingle-slide-footer row">
+
+                <!--Start Controls-->
+                <div class="col-1 align-self-center">
+                    <a href="#multi-item-example" role="button" data-bs-slide="prev">
+                        <i class='bx bxs-chevron-left bx-sm text-dark'></i>
+                    </a>
+                </div>
+                <!--End Controls-->
+
+                <!--Start Carousel Wrapper-->
+                <div id="multi-item-example" class="col-10 carousel slide" data-bs-ride="carousel">
+                    <!--Start Slides-->
+                    <div class="carousel-inner" role="listbox">
+
+                        <!--First slide-->
+                        <div class="carousel-item active">
+                            <div class="row">
+                                {% for check in checks %}
+                                <div class="col" id="check">
+            
+                                    <p>{{check.date}}</p>
+                                    <p>{{check.writer}}</p>
+                                    <p>출석완료</p>
+                                </div>
+                                {% comment %} <div>
+                                </div> {% endcomment %}
+                                <br>
+                                {% endfor %}
+                            </div>
+                        </div>
+    
+
+                    </div>
+                    <!--End Slides-->
+                </div>
+                <!--End Carousel Wrapper-->
+
+                <!--Start Controls-->
+                <div class="col-1 align-self-center text-end">
+                    <a href="#multi-item-example" role="button" data-bs-slide="next">
+                        <i class='bx bxs-chevron-right bx-sm text-dark'></i>
+                    </a>
+                </div>
+                <!--End Controls-->
+
+            </div>
+            <br><br>
+            <form class="col-md-12 m-auto" method="POST" action="{%url 'study:create_check' post.id%}" role="form">
+                {%csrf_token%}
+                <div class="form-row pt-2">
+                    <div class="col-md-12 col-10 text-end">
+                        <button type="submit" class="end_a">출석체크</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- End Slider -->
+    
+    <br><br>
+    <!-- Start Comment -->
+    <div class="row justify-content-center">
+        <div class="worksingle-comment-heading col-8 m-auto pb-3">
+            <h4 class="h5">스터디 일정</h4>
+        </div>
+    </div>
+    {% for todo in todos %}
+    <div class="row pb-4">
+        <div class="worksingle-comment-body col-md-8 m-auto">
+            <div class="d-flex">
+                <!-- <div>
+                    <img class="rounded-circle" src="{% static 'img/team-05.jpg' %}" style="width: 50px;">
+                </div> -->
+                <div class="comment-body">
+                    <div class="comment-header d-flex justify-content-between ms-3">
+                        <div class="header text-start">
+                            <h5 class="h6">{{todo.date}}</h5>
+                            
+                        </div>
+
+                    </div>
+                    <div class="footer">
+                        <div class="card-body border ms-3 light-300">
+                            {{todo.content}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- End Comment -->
+    {%endfor%}
+
+    <div class="row pb-4">
+        <div class="worksingle-comment-footer col-lg-8 m-auto">
+            <h4 class="h5">스터디 일정 등록</h4>
+            <form class="col-md-12 m-auto" method="POST" action="{%url 'study:create_todo' post.id%}" role="form">
+                {%csrf_token%}
+                <div class="form-group">
+                    <input type="date" name="todo_date" required><br><br>
+                    <textarea class="form-control form-control-lg light-300" id="inputmessage" name="todo_content" placeholder="해당 날짜의 계획" rows="3"></textarea>
+                </div>
+
+                <div class="form-row pt-2">
+                    <div class="col-md-12 col-10 text-end">
+                        <button type="submit" class="end_a">작성완료</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div><!-- End Comment Form -->
+
+    <div class="row pb-4">
+        <div class="worksingle-comment-footer col-lg-8 m-auto">
+            <h4 class="h5">스터디 일지</h4>
+            <div class="col-md-12 text-left justify-content-center">
+                    <div class="row gx-5">
+                        <div class="form-row pt-2">
+                            <div class="col-md-12 col-10 text-end">
+                                <button type="submit" class="end_a" onclick="location.href='{% url 'study:daily_new' post.id %}'">일지 작성하기</button>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <!-- 일지목록 -->
+                        {% for daily in dailys %}
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="{%url 'study:daily_detail' post.id daily.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/diary.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">제목 : {{daily.title}}</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        날짜 : {{daily.date}}
+                                    </p>
+                                    <br>
+                                    <p>자세히</p>
+                                </div>
+                            </a>
+                        </div>
+                        {%endfor%}
+                    </div>
+                </div>
+        </div>
+    </div><!-- End Comment Form -->
+
+</section>
+{%endif%}
+{% else %}
+<div style="display:block; text-align: center; width:900px;margin: 300px auto; position:relative;">
+  <h3>로그인 후 이용 가능</h3>
+  <br>
+  <a href="{% url 'account_login' %}" class="btn " style="background-color: rgb(218, 218, 248);">로그인</a>
+  <a href="{% url 'account_signup' %}" class="btn " style="background-color: rgb(218, 218, 248);">회원가입</a>
+</div>
+{% endif %}
+{% endblock %}
+

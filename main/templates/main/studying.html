@@ -1,0 +1,552 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <!-- Start Banner Hero -->
+    <div id="work_single_banner" class="bg-light w-100">
+        <div class="container-fluid text-light d-flex justify-content-center align-items-center border-0 rounded-0 p-0 py-5">
+            <div class="banner-content col-lg-8 m-lg-auto text-center py-5 px-3">
+                <h1 class="banner-heading h2 pb-5 typo-space-line-center">스터디 이름</h1>
+                <h3 class="h4 pb-2 light-300">스터디 한줄소개</h3><br>
+                <p class="banner-footer light-300">
+                    스터디 기간
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- End Banner Hero -->
+    <section class="bg-light pt-sm-0 py-5">
+        <div class="container py-5">
+
+            <h1 class="h2 semi-bold-600 text-center mt-2">오늘의 공지사항</h1>
+            <p class="text-center pb-5 light-300">공지사항을 확인해 주세요!!</p>
+
+            <!-- Start Pricing Horizontal -->
+            <div class="pricing-horizontal row col-10 m-auto d-flex shadow-sm rounded overflow-hidden bg-white">
+                <div class="pricing-horizontal-icon col-md-3 text-center bg-secondary text-light py-4">
+                    <!-- <i class="display-1 bx bx-package pt-4"></i> -->
+                    <!-- <i class="display-1 fas fa-envelope-open-text pt-4"></i> -->
+                    <i class="display-1 far fa-clipboard pt-4"></i>
+                    <br><br>
+                    <h5 class="h5 semi-bold-600 pb-4 light-300">공지사항</h5>
+                </div>
+                <div class="pricing-horizontal-body offset-lg-1 col-md-5 col-lg-4 d-flex align-items-center pl-5 pt-lg-0 pt-4">
+                    <ul class="text-left px-4 list-unstyled mb-0 light-300">
+                        <!-- {% for notice in notices %}
+                            <li><i class="bx bxs-circle me-2"></i>{{notice.content}}</li>
+                        {%endfor%} -->
+                        <li><i class="bx bxs-circle me-2"></i>5 Users</li>
+                        <li><i class="bx bxs-circle me-2"></i>2 TB space</li>
+                        <li><i class="bx bxs-circle me-2"></i>Community Forums</li>
+                    </ul>
+                </div>
+                <div class="pricing-horizontal-tag col-md-4 text-center pt-3 d-flex align-items-center">
+                    <div class="w-100 light-300">
+                        
+                        <a href="#" class="btn rounded-pill px-4 btn-outline-primary mb-3">작성 및 수정하기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Start Work Sigle -->
+    <section class="container py-5">
+        <div class="row pt-5">
+            <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
+                <h2 class="worksingle-heading h3 pb-3 light-300 typo-space-line">스터디 멤버</h2>
+                <p class="worksingle-footer py-3 text-muted light-300">
+                    
+                </p>
+            </div>
+        </div><!-- End Blog Cover -->
+
+        <div class="row justify-content-center pb-4">
+            <div class="col-lg-8">
+                <!-- <div id="templatemo-slide-link-target" class="card mb-3">
+                    <img class="img-fluid border rounded" src="{% static 'img/work-slide-04.jpg' %}" alt="Card image cap">
+                </div> -->
+                <div class="worksingle-slide-footer row">
+
+                    <!--Start Controls-->
+                    <div class="col-1 align-self-center">
+                        <a href="#multi-item-example" role="button" data-bs-slide="prev">
+                            <i class='bx bxs-chevron-left bx-sm text-dark'></i>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+
+                    <!--Start Carousel Wrapper-->
+                    <div id="multi-item-example" class="col-10 carousel slide" data-bs-ride="carousel">
+                        <!--Start Slides-->
+                        <div class="carousel-inner" role="listbox">
+
+                            <!--First slide-->
+                            <div class="carousel-item active">
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-06-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-05.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-05.jpg-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-04.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-04-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-03.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-03-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}g" alt="Product Image">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.First slide-->
+
+                            <!--Second slide-->
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-03.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-03-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-02.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-02-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-06-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Second slide-->
+
+                            <!--Second slide-->
+                            <div class="carousel-item">
+                                <div class="row">
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-03.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-03-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-02.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-02-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-01.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-01-small.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a class="templatemo-slide-link" href="{% static 'img/work-slide-06.jpg' %}">
+                                            <img class="img-fluid border rounded" src="{% static 'img/work-slide-06.jpg' %}" alt="Product Image">
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--/.Second slide-->
+
+                        </div>
+                        <!--End Slides-->
+                    </div>
+                    <!--End Carousel Wrapper-->
+
+                    <!--Start Controls-->
+                    <div class="col-1 align-self-center text-end">
+                        <a href="#multi-item-example" role="button" data-bs-slide="next">
+                            <i class='bx bxs-chevron-right bx-sm text-dark'></i>
+                        </a>
+                    </div>
+                    <!--End Controls-->
+
+                </div>
+            </div>
+        </div><!-- End Slider -->
+
+        <h1 class="h2 semi-bold-600 text-center pt-5">출석체크</h1>
+        <p class="text-center pb-5 light-300">
+            날짜 별 출석체크 관리
+        </p>
+
+
+        <div class="row d-flex align-items-center pb-5">
+            <div class="col-lg-6 offset-lg-0 col-md-8 offset-md-2">
+                <!-- <div class="rounded float-right"> -->
+                    <!-- <div class="row"> -->
+                        <div class="calendar">
+                            <div class="calendar_header">
+                                <div class="calendar_nav">
+                                    <button class="nav-btn go-prev">&lt;</button>
+                                    <span class="year"></span>년
+                                    <span class="month"></span>월
+                                    <!-- <button class="nav-btn go-today">오늘로 가기</button> -->
+                                    <button class="nav-btn go-next">&gt;</button>
+                                </div>
+                            </div>
+                            <div class="calendar_main">
+                                <div class="days">
+                                    <div class="day">일</div>
+                                    <div class="day">월</div>
+                                    <div class="day">화</div>
+                                    <div class="day">수</div>
+                                    <div class="day">목</div>
+                                    <div class="day">금</div>
+                                    <div class="day">토</div>
+                                </div>
+                                <div class="dates"></div>
+                            </div>
+                        
+                            <!-- 예약 창 -->
+                            <div class="resv-wrapper">
+                                <div class="resv-bg">
+                                    <button class="resv-close">X</button>
+                                    <div class="resv_info">
+            
+                                        <div class="resv-remain">
+                                            <span>N</span>명 출석함
+                                        </div>
+                                        <div>
+                                            <h3>
+                                                출석자 목록
+                                            </h3>
+                                            <hr>
+                                            <div class="resv-list">  
+                                                <p>이건회</p>
+                                                <p>정준홍</p>
+                                                <p>서희찬</p>
+                                            </div>
+                                            <hr>
+                                            <div style="float: right;">
+                                            <button>출석하기</button>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    <!-- </div> -->
+                <!-- </div> -->
+            </div>
+
+            <div class="col-lg-6">
+
+                <!-- Start Pricing List -->
+                <div class="pricing-list shadow-sm rounded-top rounded-3 py-sm-0 py-5">
+                    <div class="row p-2">
+                        <div class="pricing-list-icon col-3 text-center m-auto text-secondary ml-5 py-2">
+                            <i class="display-3 bx bx-package"></i>
+                        </div>
+                        <div class="pricing-list-body col-md-5 align-items-center pl-3 pt-2">
+                            <ul class="list-unstyled text-center light-300">
+                                <li class="h5 semi-bold-600 mb-0 mt-3">Free</li>
+                                <li>Deserunt mollit laborum.</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-list-footer col-4 text-center m-auto align-items-center">
+                            <a href="#" class="btn rounded-pill px-4 btn-primary light-300">$0</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List -->
+
+                <!-- Start Pricing List -->
+                <div class="pricing-list shadow-sm py-sm-0 py-5">
+                    <div class="row p-2">
+                        <div class="pricing-list-icon col-3 text-center m-auto text-secondary ml-5 py-2">
+                            <i class="display-3 bx bx-package"></i>
+                        </div>
+                        <div class="pricing-list-body col-md-5 align-items-center pl-3 pt-2">
+                            <ul class="list-unstyled text-center light-300">
+                                <li class="h5 semi-bold-600 mb-0 mt-3">Standard</li>
+                                <li>Adipiscing elit, sed do</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-list-footer col-sm-4 col-5 text-center m-auto align-items-center">
+                            <a href="#" class="btn rounded-pill px-4 btn-primary light-300">$120/Year</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List -->
+
+                <!-- Start Pricing List -->
+                <div class="pricing-list shadow-sm rounded-botton rounded-3 py-sm-0 py-5">
+                    <div class="row p-2">
+                        <div class="pricing-list-icon col-sm-3 text-center m-auto text-secondary ml-5 py-2">
+                            <i class="display-3 bx bx-package"></i>
+                        </div>
+                        <div class="pricing-list-body col-md-5 align-items-center pl-3 pt-2">
+                            <ul class="list-unstyled text-center light-300">
+                                <li class="h5 semi-bold-600 mb-0 mt-3">Enterprise</li>
+                                <li>Sed do eiusmod tempor</li>
+                            </ul>
+                        </div>
+                        <div class="pricing-list-footer col-sm-4 col-5 text-center m-auto align-items-center">
+                            <a href="#" class="btn rounded-pill px-4 btn-primary light-300">$840/Year</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Pricing List -->
+                <p class="text-center"><a class="btn px-4 mt-4 mx-auto btn-outline-primary" href="#">Get Now</a></p>
+
+
+            </div>
+        </div>
+        <!-- 달력 -->
+        <!-- <div class="row">
+            <div class="regibox" align="center">
+                <form method="POST" action="date">
+                    {% csrf_token %}
+                    <input type="date" id="date" name="date" value="2021-02-20" min="2021-02-20" max="2022-01-01">
+                    <br><br>
+                    <button type="submit" value="submit">일정표 생성</button>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="calendar">
+                <div class="calendar_header">
+                    <div class="calendar_nav">
+                        <button class="nav-btn go-prev">&lt;</button>
+                        <span class="year"></span>년
+                        <span class="month"></span>월 -->
+                        <!-- <button class="nav-btn go-today">오늘로 가기</button> -->
+                        <!-- <button class="nav-btn go-next">&gt;</button>
+                    </div>
+                </div>
+                <div class="calendar_main">
+                    <div class="days">
+                        <div class="day">일</div>
+                        <div class="day">월</div>
+                        <div class="day">화</div>
+                        <div class="day">수</div>
+                        <div class="day">목</div>
+                        <div class="day">금</div>
+                        <div class="day">토</div>
+                    </div>
+                    <div class="dates"></div>
+                </div> -->
+            
+                <!-- 예약 창 -->
+                <!-- <div class="resv-wrapper">
+                    <div class="resv-bg">
+                        <button class="resv-close">X</button>
+                        <div class="resv_info">
+
+                            <div class="resv-remain">
+                                <span>N</span>명 출석함
+                            </div>
+                            <div>
+                                <h3>
+                                    출석자 목록
+                                </h3>
+                                <hr>
+                                <div class="resv-list">  
+                                    <p>이건회</p>
+                                    <p>정준홍</p>
+                                    <p>서희찬</p>
+                                </div>
+                                <hr>
+                                <div style="float: right;">
+                                <button>출석하기</button>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div> -->
+
+        <!-- Start Comment -->
+        <div class="row pt-5">
+            <div class="worksingle-content col-lg-8 m-auto text-left justify-content-center">
+                <h2 class="worksingle-heading h3 pb-3 light-300 typo-space-line">스터디 일정</h2>
+                <p class="worksingle-footer py-3 text-muted light-300">
+                    
+                </p>
+            </div>
+        </div><!-- End Blog Cover -->   
+        {% for date in all_dates%}
+        <div class="row pb-4">
+            <div class="worksingle-comment-body col-md-8 m-auto">
+                <div class="d-flex">
+                    <div>
+                        <img class="rounded-circle" src="{% static 'img/team-05.jpg' %}" style="width: 50px;">
+                    </div>
+                    <div class="comment-body">
+                        <div class="comment-header d-flex justify-content-between ms-3">
+                            <div class="header text-start">
+                                <h5 class="h6">John Doe</h5>
+                                <p class="text-muted light-300">10 mins ago</p>
+                            </div>
+                            <a href="#" class="text-decoration-none text-secondary"><i class='bx bxs-share me-2'></i>Reply</a>
+                        </div>
+                        <div class="footer">
+                            <div class="card-body border ms-3 light-300">
+                                {{date.content}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Comment -->
+        {%endfor%}
+
+
+
+        <div class="row pb-4">
+            <div class="worksingle-comment-footer col-lg-8 m-auto">
+                <h4 class="h5">스터디 일정 작성하기</h4>
+                <form class="col-md-12 m-auto" method="POST" action="{% url 'main:studydate_create' %}" role="form">
+                    {%csrf_token%}
+                    <div class="form-group">
+                        <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputmessage">일정을 작성하세요</label>
+                        <textarea class="form-control form-control-lg light-300" id="inputmessage" name="content" placeholder="Your Comment" rows="5"></textarea>
+                    </div>
+
+                    <!-- <div class="row py-4">
+                        <div class="col-lg-6">
+                            <label class="pb-2 light-300" for="inputname">Name</label>
+                            <input type="text" class="form-control form-control-lg light-300" id="inputname" name="inputname" placeholder="Name">
+                        </div>
+                        <div class="col-lg-6">
+                            <label class="pb-2 pt-sm-0 pt-4 light-300" for="inputemail">Email</label>
+                            <input type="email" class="form-control form-control-lg light-300" id="inputemail" name="inputemail" placeholder="Email">
+                        </div>
+                    </div> -->
+
+                    <div class="form-row pt-2">
+                        <div class="col-md-12 col-10 text-end">
+                            <button type="submit" class="btn btn-secondary text-white px-md-4 px-2 py-md-3 py-1 radius-0 light-300">Send Message</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- End Comment Form -->
+
+
+    </section>
+    <!-- End Work Sigle -->
+
+    <!-- Start Related Post -->
+    <article class="container-fluid bg-light">
+        <div class="container">
+            <div class="worksingle-related-header row">
+                <h1 class="h2 py-5">스터디 일지</h1>
+                <div class="col-md-12 text-left justify-content-center">
+                    <div class="row gx-5">
+                        
+                        <div class="form-row pt-2">
+                            <div class="col-md-12 col-10 text-end">
+                                <button type="submit" class="btn btn-secondary text-white px-md-4 px-2 py-md-3 py-1 radius-0 light-300"><a href="{%url 'main:diary_new'%}">일지 작성하기</a></button>
+                            </div>
+                        </div>
+                        <!-- 일지목록 -->
+                        {% for diary in diarys %}
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="{%url 'main:diary_detail' diary.id%}" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">제목 : {{diary.title}}</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        날짜 : {{diary.date}}
+                                    </p>
+                                    <br>
+                                    <p>자세히</p>
+                                </div>
+                            </a>
+                        </div>
+                        {%endfor%}
+                        
+                        
+                        
+                        <!-- <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/related-post-01.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">Digital Marketing</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        Lorem ipsum dolor sit amet, consectetur.
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-primary light-300">Read more</span>
+                                        <div class="light-300">
+                                            <i class='bx-fw bx bx-heart me-1'></i>5
+                                            <i class='bx-fw bx bx-chat    ms-1 me-1'></i>3
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> -->
+                        <!-- <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/related-post-02.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">App Development</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        Tempor incididunt ut labore et dolore.
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-primary light-300">Read more</span>
+                                        <div class="light-300">
+                                            <i class='bx-fw bx bx-heart me-1'></i>11
+                                            <i class='bx-fw bx bx-chat    ms-1 me-1'></i>9
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-sm-6 col-lg-4 mb-5">
+                            <a href="#" class="related-content card text-decoration-none overflow-hidden h-100">
+                                <img class="related-img card-img-top" src="{% static 'img/related-post-03.jpg' %}" alt="Card image cap">
+                                <div class="related-body card-body p-4">
+                                    <h5 class="card-title h6 m-0 semi-bold-600 text-dark">Digital Marketing</h5>
+                                    <p class="card-text pt-2 mb-1 light-300 text-dark">
+                                        Consectetur adipiscing elit.
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="text-primary light-300">Read more</span>
+                                        <div class="light-300">
+                                            <i class='bx-fw bx bx-heart me-1'></i>31
+                                            <i class='bx-fw bx bx-chat    ms-1 me-1'></i>2
+                                        </div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+
+    </article>
+    <!-- End Related Post -->
+{% endblock %}

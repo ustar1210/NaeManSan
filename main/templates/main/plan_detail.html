@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="container py-5">
+    <h1>{{plan.title}}</h1> 
+    작성자 : {{plan.writer}} 
+    날짜 : {{plan.pub_date}} 
+    <hr> 
+    {% if plan.image %}
+        <p><img src="{{plan.image.url}}" alt="사진"></p>
+    {% endif %}
+    <p>{{plan.body}}</p>
+    <a href="{%url 'main:plan_edit' plan.id%}">수정하기</a>
+    <a href="{%url 'main:plan_delete' plan.id%}">삭제하기</a>
+
+    <hr><h3> 댓글목록</h3><hr>
+        
+        <div>
+            {% for comment in comments %}
+            <div>
+                <p>
+                    작성자 : {{ comment.writer }}
+                </p>
+
+                <p>{{comment.content}}</p>
+                {% if user == comment.writer %}
+                <ul class="actions">
+                    <li><a href="{% url 'main:edit_comment' comment.id %}"class = 'button'>수정&nbsp</a></li>
+                    <li><a href="{% url 'main:delete_comment' comment.id %}"class = 'button'>삭제</a></li>
+                </ul>
+                {% else %}
+                
+                {% endif %}
+
+                <hr>
+            </div>
+            {%endfor%}
+
+            {% if user.is_authenticated %}
+            <div>
+                <form action="{%url 'main:create_comment' plan.id%}" method="POST">
+                    {%csrf_token%}
+                    <textarea name="content" placeholder="댓글 내용 입력"></textarea>
+                    <input type="submit" value="확인">
+                </form>
+            </div>
+            {% else %} 
+            <p>로그인 후 댓글 작성이 가능합니다</p>
+            {% endif %}
+        </div>
+
+</section>
+{% endblock %}

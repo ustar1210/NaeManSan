@@ -1,0 +1,393 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+ 
+/*
+=====
+RESET STYLES
+=====
+*/
+
+.field__input{ 
+  --uiFieldPlaceholderColor: var(--fieldPlaceholderColor, #767676);
+  
+  background-color: transparent;
+  border-radius: 0;
+  border: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  font-family: inherit;
+  font-size: inherit;
+}
+
+.field__input:focus::-webkit-input-placeholder{
+  color: var(--uiFieldPlaceholderColor);
+}
+
+.field__input:focus::-moz-placeholder{
+  color: var(--uiFieldPlaceholderColor);
+}
+
+/*
+=====
+CORE STYLES
+=====
+*/
+
+.field{
+  --uiFieldBorderWidth: var(--fieldBorderWidth, 2px);
+  --uiFieldPaddingRight: var(--fieldPaddingRight, 1rem);
+  --uiFieldPaddingLeft: var(--fieldPaddingLeft, 1rem);   
+  --uiFieldBorderColorActive: var(--fieldBorderColorActive, rgba(22, 22, 22, 1));
+
+  display: var(--fieldDisplay, inline-flex);
+  position: relative;
+  font-size: var(--fieldFontSize, 1rem);
+}
+
+.field__input{
+  box-sizing: border-box;
+  width: var(--fieldWidth, 100%);
+  height: var(--fieldHeight, 3rem);
+  padding: var(--fieldPaddingTop, 1.25rem) var(--uiFieldPaddingRight) var(--fieldPaddingBottom, .5rem) var(--uiFieldPaddingLeft);
+  border-bottom: var(--uiFieldBorderWidth) solid var(--fieldBorderColor, rgba(0, 0, 0, .25));  
+}
+
+.field__input:focus{
+  outline: none;
+}
+
+.field__input::-webkit-input-placeholder{
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+
+.field__input::-moz-placeholder{
+  opacity: 0;
+  transition: opacity .2s ease-out;
+}
+
+.field__input:focus::-webkit-input-placeholder{
+  opacity: 1;
+  transition-delay: .2s;
+}
+
+.field__input:focus::-moz-placeholder{
+  opacity: 1;
+  transition-delay: .2s;
+}
+
+.field__label-wrap{
+  box-sizing: border-box;
+  pointer-events: none;
+  cursor: text;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.field__label-wrap::after{
+  content: "";
+  box-sizing: border-box;
+  width: 100%;
+  height: 0;
+  opacity: 0;
+
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.field__input:focus ~ .field__label-wrap::after{
+  opacity: 1;
+}
+
+.field__label{
+  position: absolute;
+  left: var(--uiFieldPaddingLeft);
+  top: calc(50% - .5em);
+
+  line-height: 1;
+  font-size: var(--fieldHintFontSize, inherit);
+
+  transition: top .2s cubic-bezier(0.9, -0.15, 0.1, 1.15), opacity .2s ease-out, font-size .2s ease-out;
+  will-change: bottom, opacity, font-size;
+}
+
+.field__input:focus ~ .field__label-wrap .field__label,
+.field__input:not(:placeholder-shown) ~ .field__label-wrap .field__label{
+  --fieldHintFontSize: var(--fieldHintFontSizeFocused, .75rem);
+
+  top: var(--fieldHintTopHover, .25rem);
+}
+
+/* 
+effect 1
+*/
+
+.field_v1 .field__label-wrap::after{
+  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transition: opacity .2s ease-out;
+  will-change: opacity;
+}
+
+/* 
+effect 2
+*/
+
+.field_v2 .field__label-wrap{
+  overflow: hidden;
+}
+
+.field_v2 .field__label-wrap::after{
+  border-bottom: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  transform: translate3d(-105%, 0, 0);
+  will-change: transform, opacity;
+  transition: transform .285s ease-out .2s, opacity .2s ease-out .2s;
+}
+
+.field_v2 .field__input:focus ~ .field__label-wrap::after{
+  transform: translate3d(0, 0, 0);
+  transition-delay: 0;
+}
+
+/*
+effect 3
+*/
+
+.field_v3 .field__label-wrap::after{
+  border: var(--uiFieldBorderWidth) solid var(--uiFieldBorderColorActive);
+  will-change: opacity, height;
+  transition: height .2s ease-out, opacity .2s ease-out;
+}
+
+.field_v3 .field__input:focus ~ .field__label-wrap::after{
+  height: 100%;
+}
+
+/*
+=====
+LEVEL 4. SETTINGS
+=====
+*/
+
+.field{
+  --fieldBorderColor: #5c76c0;
+  --fieldBorderColorActive: #5673c2;
+}
+
+/*
+=====
+DEMO
+=====
+*/
+
+.page{
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 480px;
+  margin: auto;
+  padding: 1rem;
+
+  display: grid;
+  grid-gap: 30px;
+}
+
+.substack{
+  border:1px solid #EEE; 
+  background-color: #fff;
+  width: 100%;
+  max-width: 480px;
+  height: 280px;
+  margin: 1rem auto;;
+}   
+/* 버튼CSS */
+button{
+  background:#435ac0;
+  color:#fff;
+  border:none;
+  position:relative;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:800ms ease all;
+  outline:none;
+}
+button:hover{
+  background:#fff;
+  color:#435ac0;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #435ac0;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:800ms ease all;
+}
+textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #aaabaf;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+
+
+.box select {
+  background-color: #435ac0;
+  color: white;
+  padding: 3px;
+  width: 120px;
+  border: none;
+  font-size: 18px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+}
+
+.box::before {
+  font-family: FontAwesome;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 20%;
+  height: 100%;
+  text-align: center;
+  font-size: 28px;
+  line-height: 45px;
+
+  pointer-events: none;
+}
+
+
+.box select option {
+  padding: 30px;
+}
+
+
+</style>
+<section style="margin: 20px; margin-left: 35px;" >
+    <form action="{%url 'study:create'%}" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <!-- <p>스터디명 : <input type="text" name="name" required></p> -->
+
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="Study Name" type="text" name="name" required>
+          <span class="field__label-wrap">
+            <span class="field__label">스터디 이름</span>
+          </span>
+        </label>
+
+        <div class= "box">
+  <p>스터디 분야:
+        <select name="section">
+            <option value="어학">어학</option>
+            <option value="자격증">자격증</option>
+            <option value="취업">취업</option>
+            <option value="전공">전공</option>
+        </select>
+          </div>
+         
+          <!-- 분야 -->
+        </p>
+
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="Introduce" type="text" name="intro" required>
+          <span class="field__label-wrap">
+            <span class="field__label">한줄소개</span>
+          </span>
+        </label>
+
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="Member" type="text" name="qualification" required>
+          <span class="field__label-wrap">
+            <span class="field__label">모집대상</span>
+          </span>
+        </label>
+        <div>
+
+        </div>
+        <!-- <p>스터디 한줄 소개:  <input type="text" name="intro" required></p>
+        <p>모집 대상: <input type="text" name="qualification" required></p> -->
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="최소" type="number" name="member_start" min="1" required>
+          <span class="field__label-wrap">
+            <span class="field__label">최소 모집인원</span>
+          </span>
+        </label>
+        ~
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="최대" type="number" name="member_end" min="1" required>
+          <span class="field__label-wrap">
+            <span class="field__label">최대 모집인원</span>
+          </span>
+        </label>
+        <!-- <p>모집 인원: <input type="number" name="member_start" min="1" required> ~ <input type="number" name="member_end" min="1" required></p> -->
+
+        <p>활동 기간: <input type="date" name="start_date" required> ~ <input type="date" name="due_date" required></p>
+        <p>스터디 정보: <textarea style="width: 100%;" type="text" name="body" cols="20" rows="20"></textarea></p>
+
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="" type="number" name="difficulty" min="1" max = "10" required >
+          <span class="field__label-wrap">
+            <span class="field__label">난이도</span>
+          </span>
+        </label>
+        <div>
+
+        </div>
+        <!-- <p>스터디 난이도: <input type="number" name="difficulty" min="1" max = "10" required></p> -->
+
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="Phone Number" type="text" name="phnum" required>
+          <span class="field__label-wrap">
+            <span class="field__label">스터디장 번호</span>
+          </span>
+        </label>
+
+        <div>
+
+        </div>
+        <label class="field field_v1" style="margin: 10px;">
+          <input class="field__input" placeholder="Phone Number"  type="file" name="image">
+          <span class="field__label-wrap">
+            <span class="field__label">사진</span>
+          </span>
+        </label>
+
+        <!-- <p>스터디장 번호: <input type="text" name="phnum" required></p> -->
+		<!-- <p>사진: <input type="file" name="image"></p> -->
+        <hr/>
+
+
+        <!-- 제출 오른쪽으로 옮기고싶음.. -->
+        <button type="submit">제출</button>
+
+    </form>
+</section>
+{% endblock %}

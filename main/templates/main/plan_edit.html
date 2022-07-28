@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<section class="container py-5">
+<form action="{% url 'main:plan_update' plan.id %}" method="post" enctype="multipart/form-data"> 
+    {%csrf_token%}
+    <p>제목 : <input type="text" name="title" value="{{plan.title}}"></p>
+    <p>작성자 : <input type="text" name="writer" value="{{plan.writer}}"></p>
+    <p>사진 : <input type="file" name="image" value="{{plan.image}}"></p>
+    <p>
+        내용 : <textarea type="text" name="body" id="" cols="30" rows="10" value="{{plan.body}}"></textarea>
+    </p> 
+    <button type="submit">제출</button>
+</form>
+</section>
+{% endblock %}

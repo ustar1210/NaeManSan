@@ -1,0 +1,340 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+      .first_a{
+        border: 2px solid none;
+        background-color: rgb(158, 189, 255);
+        padding: 4px 7px;        
+        border-radius: 10px;
+        text-decoration: none;
+        color: whitesmoke;
+
+    }
+  .my_title{
+    font-weight: 600;
+  }
+  .round{
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+    html,body {
+  background: #efefef;
+  font-family: "Arial";
+    }
+  }
+
+
+header {
+  background: #eee;
+  background-image: url("https://media.vlpt.us/images/seochan99/post/a36f4a37-c087-4b26-889d-8721bcf4285a/IMG_8780_edited.JPG");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-color: whitesmoke;
+  height: 250px;
+}
+
+
+
+@media (max-width:800px) {
+  header {
+    height: 150px;
+  } 
+  
+}
+
+main {
+      padding: 20px 20px 0px 20px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.photo {
+  width: 200px;
+  height: 200px;
+  margin-top: -120px;
+  border-radius: 100px;
+  border: 4px solid #fff;
+}
+
+
+
+@media (max-width:990px) {
+
+}
+
+.name {
+  margin-top: 20px;
+  font-family: "Open Sans";
+  font-weight: 600;
+  font-size: 18pt;
+  color: #777;
+}
+
+.info {
+  margin-top: -5px;
+  margin-bottom: 5px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11pt;
+  color: #aaa;
+}
+
+.stats {
+  margin-top: 25px;
+  text-align: center;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #ededed;
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.number-stat {
+  padding: 0px;
+  font-size: 14pt;
+  font-weight: bold;
+  font-family: 'Montserrat', sans-serif;
+  color: #aaa;
+}
+
+.desc-stat {
+  margin-top: -15px;
+  font-size: 10pt;
+  color: #bbb;
+}
+
+.desc {
+  text-align: center;
+  margin-top: 25px;
+  margin: 25px 40px;
+  color: #999;
+  font-size: 11pt;
+  font-family: "Open Sans";
+  padding-bottom: 25px;
+  border-bottom: 1px solid #ededed;
+}
+
+.social {
+  margin: 5px 0 12px 0;
+  text-align: center;
+  display: inline-block;
+  font-size: 20pt;
+}
+
+.social i {
+  cursor: pointer;
+  margin: 0 15px;
+}
+
+.social i:nth-child(1)  { color: #4267b2; }
+.social i:nth-child(2)  { color: #1da1f2; }
+.social i:nth-child(3)  { color: #bd081c; }
+.social i:nth-child(4)  { color: #36465d; }
+
+.right {
+  padding: 0 25px 0 25px !important;
+}
+
+
+
+.follow:hover {
+  box-shadow: 0 0 15px rgba(0,0,0,0.2), 0 0 15px rgba(0,0,0,0.2);
+}
+
+@media (max-width:990px) {  
+  .follow {
+    width: 50%;
+    margin-left: 25%;
+    display: block;
+    position: unset;
+    text-align: center;
+  }
+}
+.gallery  {
+  margin-top: 35px;
+}
+
+.gallery div {
+  margin-bottom: 30px;
+}
+
+.gallery img {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.10), 0 3px 6px rgba(0,0,0,0.10);
+  width: auto; 
+  height: auto;
+  cursor: pointer;
+  max-width: 100%;
+}
+a:hover{
+        color: black;
+    }
+</style>
+
+
+<section style="margin:0px 30px 0px 30px;">
+  <div class="container">
+    {% if user.is_authenticated %}
+        <header>
+            <!-- 배경이미지 -->
+        </header>
+        <main>
+          <div class="row">
+            <div class="left col-lg-4">
+
+<!-- 이하 프로필 -->
+<!-- 프로필사진 -->
+              <div class="photo-left"> 
+                <!-- <img class="photo" src=/> -->
+                <!-- 프로필 이미지 -->
+                {% if user.profile.profile_photo %}
+                <img class="photo" src="{{user.profile.profile_photo.url}}" width="200"> <br>
+                {% else %}
+                <img class="photo" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width="200"> <br> 
+                <!-- 이미지주소 몰랑.. -->
+                {% endif %}
+              </div>
+
+              <h4 class="name">{{user.username}}</h4>
+              
+              <!-- 아래 학번표시 -->
+              <!-- <p class="info">{{user.}}</p> -->
+              <p class="info">{{user.email}}</p>
+
+              <!-- 팔로우기능 -->
+              <div class="followButton">
+                {% if request.user != user %}
+                  {% if request.user.profile in user.profile.followers.all %}
+                      <a href="{%url 'mypage:follow' user.id %}"><button type="button" class="btn btn-default"  style="background-color:rgb(80, 99, 185); color: whitesmoke;">언팔로우</button></a>
+                  {% else %}
+                    <a  href="{%url 'mypage:follow' user.id %} " ><button type="button" class="btn btn-default"  style="background-color:rgb(80, 99, 185); color: whitesmoke;">팔로우</button></a> {% endif %}
+                {% endif %}
+              </div>
+
+                <!-- user -->
+                    <div class="follows">
+                      <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">follower: {{user.profile.followers.count}}</p> 
+                      {%for follower in user.profile.followers.all %}
+                        <a class="first_a" href="{% url 'mypage:mypage' follower.user.id %}">{{follower.user.username}}</a> 
+                      {% endfor %}
+                        <p style="color: rgba(0, 0, 0, 0.712); font-weight: 500;">following: {{user.profile.followings.count}}</p>
+                      {% for following in user.profile.followings.all %}
+                        <a class="first_a" href="{%url 'mypage:mypage' following.user.id%}">{{following.user.username}}</a>
+                      {% endfor %}
+                    </div>
+                    {% if request.user == user %}
+                    <a href="{% url 'mypage:profile_update' %}"><button type="button" class="btn btn-default" style="background-color:rgb(80, 99, 185); color: whitesmoke; margin: 10px 0px;">프로필 편집</button></a></h2></a>
+                    {% endif %}
+
+              <!-- <div class="stats row">
+                <div class="stat col-xs-4" style="padding-right: 30px; ">
+                  <p class="number-stat">3,619</p>
+                  <p class="desc-stat">Followers</p>
+                  <p class="number-stat">42</p>
+                  <p class="desc-stat">Following</p>
+                </div>
+              </div> -->
+
+              <!-- <p class="desc">안냐하세요 스터디 아자아자자</p>-->
+              <br>
+              <h4>Status Message</h4>
+              {% if user.profile.bio %}
+              <p class="desc" style="font-size: larger;">{{user.profile.bio}}</p>
+              {% else %}
+              <p class="desc" style="font-size: larger;">"아자아자자"</p>
+              {% endif %}
+              <hr/>
+            </div>
+            
+<!-- 프로필끝 -->
+
+            <div class="right col-lg-8">
+                <div class="myList">
+                    <div class="story">
+                      <i class="fas fa-chalkboard-teacher fa-2x"></i>
+                      <h1 class="my_title" style="font-family: 'Montserrat', sans-serif;">My Study</h1>
+                        <!-- 게시글 나열하는 프론트  -->
+                    </div>
+                  </div>
+
+              <div class="row gallery">
+                <!-- 공부사진 -->
+                <hr>
+                <!-- <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image"> -->
+                <h1>가입 완료한 스터디 <i class="fas fa-bell"></i></h1>
+                <hr>
+                {%for study in my_study%}
+                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+                    <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
+                      <!-- {% if study.section == 취업 %}
+                      <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
+                      {% else %}
+                      
+                      {% endif %} -->
+                      {%if study.section == '어학'%}
+                      <img class="service` card-img" src="{% static 'img/services-07.jpg' %}" alt="Card image">
+                      {%elif study.section == '전공'%}
+                      <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
+                      {%elif study.section == '자격증'%}
+                      <img class="service card-img" src="{% static 'img/services-05.jpg' %}" alt="Card image">
+                      {%elif study.section == '취업'%}
+                      <img class="service card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
+                      {%endif%}
+                      <!-- <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image"> -->
+                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
+                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="service-work-content text-left text-light">
+                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
+                                <p class="card-text" style="margin: 6px;">{{study.name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {%endfor%}
+                <hr/>
+
+                <h1>가입 대기중인 스터디 <i class="far fa-bell"></i></h1>
+                <hr>
+                {%for study in my_study_request%}
+                <div class="col-xl-3 col-md-4 col-sm-6 project ui graphic">
+                    <a href="{%url 'study:detail' study.id%}" class="service-work card border-0 text-white shadow-sm overflow-hidden mx-5 m-sm-0">
+                      <!-- 만약 스터디 이미지가 있다면 스터디 이미지,없다면 고정 이미지 사용  -->
+                        <img class="card-img" src="{% static 'img/services-03.jpg' %}" alt="Card image">
+                        <!-- 없다면 분야에따라서 사진 다르게 기존 이미지 사용  -->
+                        <div class="service-work-vertical card-img-overlay d-flex align-items-end">
+                            <div class="service-work-content text-left text-light">
+                                <span class="btn btn-outline-light rounded-pill mb-lg-3 px-lg-4 light-300">{{study.section}}</span>
+                                <p class="card-text" style="margin: 6px;">{{study.name}}</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {%endfor%}
+                <hr/>
+              </div>
+
+            </div>
+        </main>
+    {% else %}
+    <div style="display:block; text-align: center; width:900px;margin: 300px auto; position:relative;">
+      <h3>로그인 후 이용 가능</h3>
+      <br>
+      <a href="{% url 'account_login' %}" class="btn btn-warning">로그인</a>
+      <a href="{% url 'account_signup' %}" class="btn btn-warning">회원가입</a>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+<script src="https://kit.fontawesome.com/f46ac9c5ac.js" crossorigin="anonymous"></script>
+</script>
+{% endblock %}
+
+

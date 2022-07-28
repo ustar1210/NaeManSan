@@ -1,0 +1,233 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!-- Start Banner Hero -->
+<style>
+
+</style>
+
+<div class="banner-wrapper bg-light" style="height: 40em;">
+    <div id="index_banner" class="banner-vertical-center-index container-fluid pt-5">
+
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="py-5 row d-flex align-items-center">
+                        <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-5 pb-5">
+                            <h1 class="banner-heading h1 text-secondary display-3 mb-0 pb-5 mx-0 px-0 light-300 typo-space-line">
+                                함께 <strong>공부해요!</strong> 
+                              <br>
+
+                          </h1>
+                            <p  style="font-size: 20px;" class="banner-body text-muted py-3 mx-0 px-0">
+                                혼자
+                              공부할 수록 집중력이 떨어지고 공부할 때마다
+                              궁금한점이 생기지만 해결을 못할 때 <br>
+                              누군가와
+                              함께 스터디를 만들어 같이 공부하고 궁금증
+                              을 해결해 나가며 체계적으로 공부할 수 있는<br>
+                              온라인
+                              스터디 서비스
+                          </p>
+                            <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="{% url 'main:about' %}"role="button">더 알아보기</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>    
+        </div>
+
+    </div>
+</div>
+<!-- End Banner Hero -->
+
+
+
+<!-- Start Service -->
+<!-- End Service -->
+
+
+
+
+<section class="py-3" style="background-color: rgb(255, 255, 255);">
+    <div class="container py-5">
+        <h2 class="h2  text-center py-5">멋쟁이 스터티 페이지 소개</h2>
+        <div class="row text-center">
+            <div class="col-md-3 mb-3">
+                <div class=" py-5" style="background-color: rgb(185, 217, 255); margin-bottom: 30px; border-radius: 20px;">
+                    <i class="display-1 text-white fas fa-home"></i>
+                </div>
+                <h4>홈페이지</h4>
+                <div>
+                    <p style="display: inline;">멋쟁이스터디에 대한 소개와 개발자들의 정보를 확인할 수 있고 개발자들이 선정한 TOP3스터디에 대해서도 볼수 있어요!</p>
+                </div>
+                    
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="py-5" style="background-color: rgb(185, 217, 255); margin-bottom: 30px;border-radius: 20px" >
+                    <i class="display-1 text-white fas fa-search"></i>
+                </div>
+                <h4>스터디 찾기</h4>
+                <div>
+                    <p style="display: inline;">혹시 찾으시는 스터디가 있으신가요? 그렇다면 스터지 찾기 페이지에서 원하는 스터디를 분야별로 확인하여 가입할 수 있어요!!</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="py-5" style="background-color: rgb(185, 217, 255); margin-bottom: 30px;border-radius: 20px" >
+                    <i class="display-1 text-white fas fa-pencil-ruler"></i>
+                </div>
+                <h4>스터디 만들기</h4>
+                <div>
+                    <p style="display: inline;">원하는 스터디가 아직 개설되지 않았나요!? 그렇다면 스터디 만들기 기능을 통해서 스터디를 만들 수 있어요! </p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="py-5" style="background-color: rgb(185, 217, 255); margin-bottom: 30px;border-radius: 20px" >
+                    <i class="fas fa-user display-1 text-white"></i>
+                </div>
+                <h4>마이페이지</h4>
+                <div>
+                    <p style="display: inline;">나의 프로필 상태,스터디 현황 등등을 확인할 수 있고 팔로우,팔로잉 기능을 통해 다른 사용자의 프로필을 구경할 수 있어요!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section class="py-5 mb-5">
+    <div class="container">
+        <div class="recent-work-header row text-center pb-5">
+            <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Top3 스터디</h2>
+        </div>
+        <div class="row gy-5 g-lg-5 mb-4">
+            {%for post in posts|slice:":3"%}
+            <div class="col-md-4 mb-3">
+                <a href="{%url 'study:detail' post.id%}" class="recent-work card border-0 shadow-lg overflow-hidden">
+                    {%if post.section == '어학'%}
+                    <img class="service card-img" src="{% static 'img/services-07.jpg' %}" alt="Card image">
+                {%elif post.section == '전공'%}
+                    <img class="service card-img" src="{% static 'img/services-01.jpg' %}" alt="Card image">
+                {%elif post.section == '자격증'%}
+                    <img class="service card-img" src="{% static 'img/services-05.jpg' %}" alt="Card image">
+                {%elif post.section == '취업'%}
+                    <img class="service card-img" src="{% static 'img/services-02.jpg' %}" alt="Card image">
+                {%endif%}
+                    <div class="recent-work-vertical card-img-overlay d-flex align-items-end">
+                        <div class="recent-work-content text-start mb-3 ml-3 text-dark">
+                            <h3 class="card-title light-300">{{post.name}}</h3>
+                            <p class="card-text">{{post.section}}</p>
+                        </div>
+                    </div>
+                </a>
+            </div><!-- End Recent Work -->
+            {%endfor%}
+         
+        </div>
+    </div>
+</section>
+
+
+
+<section class="py-5 mb-5">
+    <div class="container">
+        <div class="recent-work-header row text-center pb-5">
+            <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Developer</h2>
+        </div>
+        <div class="row gy-5 g-lg-5 mb-4">
+
+            <!-- Start Recent Work -->
+            <section id="teams" class="section teams">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/박상준.png' %}" style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>박상준</h4>
+                                    <h5 class="role">정보통신공학과</h5>
+                                    <p style="display: inline;">💻email : sangjune2000@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/tkdwns414</p>
+                                    
+                                </div>
+                            </div><!-- person -->
+                        </div>
+        
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/서희찬.png' %}" style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>서희찬</h4>
+                                    <h5 class="role">멀티미디어공학과</h5>
+                                    <p style="display:inline;">💻email : gmlcks0513@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/seochan99</p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/신정섭.png' %}"style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>신정섭</h4>
+                                    <h5 class="role">광고홍보학과</h5>
+                                    <p style="display:inline;">💻email : subreak@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/jsobb</p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/이건회.png' %}"style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>이건회</h4>
+                                    <h5 class="role">영어통번역학전공</h5>
+                                    <p style="display:inline;">💻email : rg970604@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/rawfishthelgh
+                                    </p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/이여원.png' %}"style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>이여원</h4>
+                                    <h5 class="role">멀티미디어공학과</h5>
+                                    <p style="display:inline;">💻email : lywon725@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/lywon725</p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/정준홍.png' %}"style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>정준홍</h4>
+                                    <h5 class="role">정보통신공학과</h5>
+                                    <p style="display:inline;">💻email : zoonongzung@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/zoonong</p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <div class="person">
+                                <img src="{% static 'img/허윤회.png' %}"style="width: 70%;" alt="" class="img-responsive">
+                                <div class="person-content">
+                                    <h4>허윤회</h4>
+                                    <h5 class="role">경영학부</h5>
+                                    <p style="display: inline;">💻email : dbsghl123@naver.com</p>
+                                    <p><i class="fab fa-github-square"></i>GitHub : github.com/YoonHwe</p>
+                                </div>
+                            </div><!-- person -->
+                        </div>
+                        
+                    </div>
+                </div>
+            </section><!-- teams -->
+        </div>
+    </div>
+</section>
+<!-- End Recent Work -->
+<script src="https://kit.fontawesome.com/f46ac9c5ac.js" crossorigin="anonymous"></script>
+
+{% endblock %}

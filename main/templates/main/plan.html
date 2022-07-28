@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<section class="container py-5">
+    <button><a href="{% url 'main:plan_new' %}">글쓰기</a></button>
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" id="board">번호</th>
+                    <th scope="col" id="board">일정</th>
+                    <th scope="col" id="board">작성자</th>
+                    <th scope="col" id="board">작성날짜</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                {% for plan in plans %}
+                <tr>
+                    <td>{{ forloop.revcounter }}</td>
+                    <td><a href="{% url 'main:plan_detail' plan.id %}">{{plan.title}}</a></td>
+                    <td>{{plan.writer}}</td>
+                    <td>{{plan.pub_date}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

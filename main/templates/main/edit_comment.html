@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section id = 'main'>
+    <div class="container">
+        <div class="row">
+        </div>
+
+        <div id="content"></div>
+        <header>
+            <p> 댓글 수정하기</p>
+            <hr>
+        </header>
+        <div>
+            <form action="{% url 'main:update_comment' comment.id %}" method= "POST">
+                {% csrf_token %}
+                <textarea name='content' placeholder="댓글내용입력" value = "{{comment.content}}"></textarea>
+                <br>
+                <input type='submit' value='확인'>
+            </form>
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}
