@@ -16,22 +16,21 @@ from main.models import *
 
 def mypage(request,id):
     user = get_object_or_404(User,pk=id)
-    # my_study = study.objects.filter(study_member=user)
-    # my_study_request = study.objects.filter(study_member_request=user)
+    like_list = Like.objects.filter(user = user)
     context = {
         'user':user,
-        'my_study' : study.objects.filter(study_member=user),
+        'my_study' : study.objects.filter(writer=user),
         'my_study_request' : study.objects.filter(study_member_request=user),
         'profile_user':DetailView.model,
         'followings':user.profile.followings.all(), 
         'followers':user.profile.followers.all(),
+        'like_list' : like_list,
     }
     DetailView.context_object_name='profile_user'
     DetailView.model = User 
     DetailView.template_name = 'mypage/mypage.html'
 
     return render(request,"mypage/mypage.html",context)
-
 
 
 class ProfileView(DetailView):

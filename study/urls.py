@@ -28,4 +28,8 @@ urlpatterns = [
     path('daily_new/<int:study_id>', daily_new, name='daily_new'),
     path('daily_detail/<int:study_id>/<int:daily_id>',daily_detail, name='daily_detail'),
     path('daily_create/<int:study_id>', daily_create, name="daily_create"),
+    #-----------------좋아요------------------#
+    path('like_toggle/<int:study_id>/', like_toggle, name="like_toggle"),
+ 
+#-----------------좋아요------------------#
 ]
