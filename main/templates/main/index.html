@@ -13,12 +13,12 @@
             <div class="carousel-inner">
                 <div class="carousel-item active">
                     <div class="py-5 row d-flex align-items-center">
-                        <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-5 pb-5">
-                            <h1 class="banner-heading h1 text-secondary display-3 mb-0 pb-5 mx-0 px-0 light-300 typo-space-line">
+                        <div class="banner-content col-lg-8 col-8 offset-2 m-lg-auto text-left py-1 pb-5" style="text-align: right;">
+                            <h1 class="banner-heading h1 display-3 main-typo1 mb-0 pb-4 mx-0 px-0 light-300 typo-space-line">
                                 내가 만드는 <strong>산책로</strong>
                             <br>
                             </h1>
-                            <p style="font-size: 20px;" class="banner-body text-muted py-3 mx-0 px-0">
+                            <p style="font-size: 20px;" class="banner-body main-typo2 py-0 mx-0 px-0">
                                 바쁘게 돌아가는 삶 속에서<br>
                                 잠시,<br>
                                 재충전을 위한 본인만의 산책로가 있지는 않으신가요?<br>
@@ -28,12 +28,12 @@
                             <a class="banner-button btn rounded-pill btn-outline-primary btn-lg px-4" href="{% url 'main:about' %}"role="button" id="landing_btn">더 알아보기</a>
                             <style>
                                 #landing_btn {
-                                    color: #94B49F;
-                                    border-color: #94B49F;
+                                    color: #1f1f65;
+                                    border-color: #1f1f65;
                                 }
                                 
                                 #landing_btn:hover {
-                                    background-color: #94B49F;
+                                    background-color: #1f1f65;
                                     color: white;
                                 }
                             </style>
@@ -53,7 +53,7 @@
 
 <section class="py-3" style="background-color: rgb(255, 255, 255);">
     <div class="container py-5">
-        <h2 class="h2  text-center py-5">내가 만든 산책로 소개</h2>
+        <h2 class="h2  text-center main-typo3 py-5"><strong>내가 만드는 산책로 소개</strong></h2>
         <div class="row text-center">
             <div class="col-md-3 mb-3">
                 <div class=" py-5" style="background-color: #b7d3c1; margin-bottom: 30px; border-radius: 20px;">
@@ -100,7 +100,7 @@
 <section class="py-5 mb-5">
     <div class="container">
         <div class="recent-work-header row text-center pb-5">
-            <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Top3 산책로</h2>
+            <h2 class="col-md-6 m-auto h2 semi-bold-600 main-typo3 py-5"><strong>Top3 산책로</strong></h2>
         </div>
         <div class="row gy-5 g-lg-5 mb-4">
             {%for post in posts|slice:":3"%}
@@ -133,7 +133,7 @@
 <section class="py-5 mb-5">
     <div class="container">
         <div class="recent-work-header row text-center pb-5">
-            <h2 class="col-md-6 m-auto h2 semi-bold-600 py-5">Developer</h2>
+            <h2 class="col-md-6 m-auto h2 semi-bold-600 main-typo3 py-5"><strong>Developer</strong></h2>
         </div>
         <div class="row gy-5 g-lg-5 mb-4">
 
