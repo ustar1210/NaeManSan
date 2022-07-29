@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from .models import *
+from study.models import *
 from study.models import study
 from django.utils import timezone
 
@@ -8,7 +9,10 @@ from django.utils import timezone
 
 
 def showmain(request):
-    return render(request, 'main/index.html')
+    posts = study.objects.all()
+    return render(request, 'main/index.html', {
+        'posts':posts,
+    })
 
 
 def about(request):
