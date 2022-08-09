@@ -40,8 +40,9 @@ p, a {font-weight: 400;}
   width: 150px;
   display:block;
   position: absolute;
-  border-bottom:  5px solid #6266ea;
+  border-bottom:  5px solid #94B49F;
   padding-top: .5em;
+  right: 0;
 }
 .typo-space-line-center::after {
   left: 50%;
@@ -72,6 +73,9 @@ p, a {font-weight: 400;}
 #index_banner .carousel-indicators li,
 #index_banner .carousel-indicators.active {
   background-color: #6266ea !important;
+}
+#index_banner .carousel-indicators .banner-content {
+  color: #161654;
 }
 .service-wrapper .service-footer {
   max-width: 720px;
