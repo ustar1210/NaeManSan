@@ -37,7 +37,7 @@ p, a {font-weight: 400;}
 .typo-space-line::after,
 .typo-space-line-center::after {
   content: "";
-  width: 150px;
+  width: 0;
   display:block;
   position: absolute;
   border-bottom:  5px solid #94B49F;
@@ -74,8 +74,8 @@ p, a {font-weight: 400;}
 #index_banner .carousel-indicators.active {
   background-color: #6266ea !important;
 }
-#index_banner .carousel-indicators .banner-content {
-  color: #161654;
+#index_banner .carousel-indicators .banner-content>*{
+  color: #161654 !important;
 }
 .service-wrapper .service-footer {
   max-width: 720px;
